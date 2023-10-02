@@ -36,6 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   confetti:
   lottie:
+  circular_reveal_animation:
+  flutter_bloc:
+  page_transition:
+  circular_clip_route:
 
 dev_dependencies:
   flutter_test:

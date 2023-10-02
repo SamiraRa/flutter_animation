@@ -1,10 +1,14 @@
 import 'dart:math';
 
+import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_confetti/blurry_scene.dart';
 import 'package:flutter_confetti/lottie_animation.dart';
+import 'package:flutter_confetti/reveal_animation.dart';
+import 'package:page_transition/page_transition.dart';
 
-void main() => runApp(const ConfettiSample());
+void main() => runApp(ConfettiSample());
 
 class ConfettiSample extends StatelessWidget {
   const ConfettiSample({Key? key}) : super(key: key);
@@ -219,9 +223,31 @@ class _MyAppState extends State<MyApp> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => LottieAnimationDemo()));
+                          builder: (context) => const LottieAnimationDemo()));
                 },
-                child: Text("Next Page")),
+                child: const Text("Next Page")),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const BlurryScreen()));
+                },
+                child: const Text("Second Page")),
+          ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CircularRevealScreen()));
+                },
+                child: const Text("Third Page")),
           ),
         ],
       ),
@@ -235,3 +261,95 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+// -----------------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: CircularTransitionScreen(),
+//     );
+//   }
+// }
+
+// class CircularTransitionScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Circular Transition Example'),
+//       ),
+//       body: GestureDetector(
+//         onTapDown: (TapDownDetails details) {
+//           print(details.globalPosition);
+//           _startCircularTransition(context, details.localPosition);
+//         },
+//         child: Container(
+//           color: Colors.blue,
+//           child: Center(
+//             child: Text(
+//               'Tap anywhere',
+//               style: TextStyle(color: Colors.white),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   void _startCircularTransition(BuildContext context, Offset tapPosition) {
+//     Navigator.of(context).push(
+//       PageTransition(
+//         type: PageTransitionType
+//             .scale, // Use the rightToLeftWithFade transition type
+//         alignment: Alignment.center,
+//         duration: Duration(seconds: 1),
+//         child: CircularTransitionPageRoute(tapPosition: tapPosition),
+//       ),
+//     );
+//   }
+// }
+
+// class CircularTransitionPageRoute extends StatelessWidget {
+//   final Offset tapPosition;
+
+//   CircularTransitionPageRoute({required this.tapPosition});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final screenSize = MediaQuery.of(context).size;
+//     final maxDiameter = screenSize.width > screenSize.height
+//         ? screenSize.width
+//         : screenSize.height;
+
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Circular Transition Page'),
+//       ),
+//       body: Center(
+//         child: Container(
+//           width: maxDiameter,
+//           height: maxDiameter,
+//           decoration: BoxDecoration(
+//             shape: BoxShape.circle,
+//             color: Colors.blue,
+//           ),
+//           child: Center(
+//             child: Text(
+//               'This is the circular transition page',
+//               style: TextStyle(color: Colors.white),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
